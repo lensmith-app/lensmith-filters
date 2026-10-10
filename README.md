@@ -39,4 +39,4 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## Related
 
-- [lensmith-studio](https://github.com/lensmith-app/lensmith-studio) — the filter format, tools to validate and pack filters, and (soon) the web Studio.
+- **[Lensmith Studio](https://lensmith-app.github.io/lensmith-studio/)** — build filters in your browser with a live preview, then publish them here ([source](https://github.com/lensmith-app/lensmith-studio)).

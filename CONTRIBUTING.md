@@ -1,5 +1,12 @@
 # Adding a filter to the Lensmith store
 
+## The easy way: Lensmith Studio
+
+Build your filter in **[Lensmith Studio](https://lensmith-app.github.io/lensmith-studio/)**
+(or open one you made on your phone), then use its **Publish** tab. It builds the folder below
+for you — with a thumbnail — and walks you through the pull request. You can skip to
+[Checks](#3-checks).
+
 ## 1. Make your filter
 
 Build it in the Lensmith app's **Creator** (the ✨ button next to the shutter), then long-press
