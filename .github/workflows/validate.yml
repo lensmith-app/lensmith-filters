@@ -18,13 +18,26 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pillow==10.4.0
+      # Maintainers (write access or more) may add or edit anyone's filters. author_association
+      # isn't reliable for this (private org members show up as CONTRIBUTOR), so ask GitHub.
+      - name: Look up the author's role
+        id: role
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          permission=$(gh api "repos/${{ github.repository }}/collaborators/$AUTHOR/permission" --jq .permission 2>/dev/null || echo none)
+          case "$permission" in
+            admin|maintain|write) echo "association=MAINTAINER" >> "$GITHUB_OUTPUT" ;;
+            *) echo "association=NONE" >> "$GITHUB_OUTPUT" ;;
+          esac
+          echo "permission: $permission"
       - name: Check filters
-        working-directory: .
         run: >
           python tools/validate.py
           --base "origin/${{ github.base_ref }}"
           --author "${{ github.event.pull_request.user.login }}"
-          --association "${{ github.event.pull_request.author_association }}"
+          --association "${{ steps.role.outputs.association }}"
       - name: Try building packages
         env:
           GH_TOKEN: ${{ github.token }}
