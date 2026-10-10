@@ -13,7 +13,10 @@ FORMAT_VERSION = 2  # newest filter.json format this repo accepts
 NAME_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,38}$")
 ALLOWED_ASSETS = {".png", ".webp", ".jpg", ".jpeg"}
 THUMBNAILS = ("thumbnail.png", "thumbnail.webp", "thumbnail.jpg")
-TOP_LEVEL_FILES = {"filter.json", "listing.json", *THUMBNAILS}
+SCRIPT_FILE = "script.js"
+TOP_LEVEL_FILES = {"filter.json", "listing.json", SCRIPT_FILE, *THUMBNAILS}
+MAX_SCRIPT_BYTES = 256 * 1024
+SCRIPT_ASSET_RE = re.compile(r"assets/[A-Za-z0-9._-]+")
 
 MAX_ASSET_BYTES = 2 * 1024 * 1024
 MAX_FILTER_BYTES = 20 * 1024 * 1024

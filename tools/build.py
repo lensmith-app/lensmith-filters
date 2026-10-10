@@ -56,6 +56,9 @@ def package(f: L.Filter) -> Path:
     manifest = dict(f.filter_json, id=f.key)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("filter.json", json.dumps(manifest, ensure_ascii=False, indent=2))
+        script = f.path / L.SCRIPT_FILE
+        if manifest.get("script") == L.SCRIPT_FILE and script.exists():
+            z.write(script, L.SCRIPT_FILE)
         assets = f.path / "assets"
         if assets.exists():
             for p in sorted(assets.iterdir()):

@@ -68,7 +68,9 @@ def check_filter(f: L.Filter) -> list[str]:
         total += size
         if "/" not in rel:
             if rel not in L.TOP_LEVEL_FILES:
-                errors.append(f"{where}/{rel}: unexpected file (allowed: filter.json, listing.json, thumbnail, assets/)")
+                errors.append(f"{where}/{rel}: unexpected file (allowed: filter.json, listing.json, script.js, thumbnail, assets/)")
+            elif rel == L.SCRIPT_FILE and size > L.MAX_SCRIPT_BYTES:
+                errors.append(f"{where}/{rel}: larger than 256 KB")
         elif rel.startswith("assets/") and rel.count("/") == 1:
             if p.suffix.lower() not in L.ALLOWED_ASSETS:
                 errors.append(f"{where}/{rel}: only png, webp and jpg pictures are allowed")
@@ -106,6 +108,23 @@ def check_filter(f: L.Filter) -> list[str]:
                 errors.append(f"{where}/filter.json: picture '{ref}' must be inside assets/")
             elif not target.exists():
                 errors.append(f"{where}/filter.json: picture '{ref}' is missing from assets/")
+        script = f.path / L.SCRIPT_FILE
+        if "script" in fj:
+            if fj["script"] != L.SCRIPT_FILE:
+                errors.append(f'{where}/filter.json: "script" must be "{L.SCRIPT_FILE}"')
+            elif not script.exists():
+                errors.append(f"{where}: filter.json uses a script but script.js is missing")
+            else:
+                try:
+                    source = script.read_text(encoding="utf-8")
+                except UnicodeDecodeError:
+                    errors.append(f"{where}/script.js: must be UTF-8 text")
+                    source = ""
+                for ref in sorted(set(L.SCRIPT_ASSET_RE.findall(source))):
+                    if not (f.path / ref).exists():
+                        errors.append(f"{where}/script.js: picture '{ref}' is missing from assets/")
+        elif script.exists():
+            errors.append(f'{where}: script.js is present but filter.json has no "script": "script.js"')
 
     # listing.json
     try:
