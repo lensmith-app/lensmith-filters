@@ -1,0 +1,31 @@
+name: Check filters
+
+on:
+  pull_request:
+    paths: ["filters/**", "tools/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow==10.4.0
+      - name: Check filters
+        working-directory: .
+        run: >
+          python tools/validate.py
+          --base "origin/${{ github.base_ref }}"
+          --author "${{ github.event.pull_request.user.login }}"
+          --association "${{ github.event.pull_request.author_association }}"
+      - name: Try building packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/build.py --repo "${{ github.repository }}" --history /tmp/history.json

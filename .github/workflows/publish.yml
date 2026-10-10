@@ -1,0 +1,63 @@
+name: Publish store
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Hourly: refresh download counts and trending.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow==10.4.0
+
+      - name: Load download history
+        run: |
+          mkdir -p stats
+          git fetch origin stats || true
+          git show origin/stats:history.json > stats/history.json 2>/dev/null || echo '{}' > stats/history.json
+
+      - name: Build packages, release new versions, count downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/build.py --repo "${{ github.repository }}" --publish
+
+      - name: Save download history (stats branch)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/stats-tree && mkdir /tmp/stats-tree && cd /tmp/stats-tree
+          git init -q -b stats
+          git config user.name "lensmith-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp "$GITHUB_WORKSPACE/stats/history.json" history.json
+          git add history.json
+          git commit -q -m "Update download history"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" stats
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/site
+      - id: deploy
+        uses: actions/deploy-pages@v4
