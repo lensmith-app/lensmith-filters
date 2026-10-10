@@ -17,7 +17,7 @@ from PIL import Image
 
 import lensmith as L
 
-MAINTAINER_ROLES = {"OWNER", "MEMBER", "COLLABORATOR"}
+MAINTAINER_ROLES = {"MAINTAINER", "OWNER", "MEMBER", "COLLABORATOR"}
 
 
 def changed_filter_dirs(base: str) -> set[tuple[str, str]]:
