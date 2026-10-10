@@ -1,5 +1,9 @@
 {
-  "version": 1,
-  "description": "Shoot every nail into the wall! The gun follows your nose — open your mouth to fire. How fast can you go 10/10?",
-  "tags": ["game", "shooter", "challenge"]
+  "version": 2,
+  "description": "Tap to fire! The gun on the right swings back and forth — time your one shot so the bullet ricochets off the walls and nails and hammers in all 10. Miss one and you lose. Tap to play again.",
+  "tags": [
+    "game",
+    "shooter",
+    "challenge"
+  ]
 }
