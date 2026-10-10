@@ -1,0 +1,30 @@
+name: Report a filter
+description: Something in the Lensmith store breaks the rules or doesn't work.
+title: "Report: "
+labels: ["report"]
+body:
+  - type: input
+    id: filter
+    attributes:
+      label: Filter
+      description: The filter's id from the app (for example `janedoe.heart-rain`).
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason
+      options:
+        - Offensive, hateful or harassing
+        - Sexual or violent content
+        - Uses someone else's work without permission
+        - Targets a real person
+        - Broken / doesn't work
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Anything that helps us understand the problem.
