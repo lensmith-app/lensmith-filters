@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 4,
+  "minAppVersion": 5,
   "id": "lensmith-app.nail-it",
   "name": "Nail It",
   "brightness": 0,
@@ -11,16 +11,28 @@
   "fade": 0,
   "vignette": 0,
   "grain": 0,
-  "colorize": [1, 1, 1],
+  "colorize": [
+    1,
+    1,
+    1
+  ],
   "colorizeAmount": 0,
   "effect": "None",
   "effectParam": 0,
   "stickers": [],
   "warps": [],
   "background": "None",
-  "backgroundTop": [1, 0.55, 0.3],
-  "backgroundBottom": [0.45, 0.15, 0.55],
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
   "rules": [],
-  "game": { "type": "nails", "nails": 10, "fire": "MouthOpen" },
-  "doubleTapFlip": true
+  "doubleTapFlip": false,
+  "script": "script.js"
 }
