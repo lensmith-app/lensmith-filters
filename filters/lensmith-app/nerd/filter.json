@@ -1,0 +1,69 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.nerd",
+  "name": "Nerd",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": 0,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "emoji": "👓",
+      "anchor": "BetweenEyes",
+      "offsetX": 0,
+      "offsetY": -0.02,
+      "width": 1.0,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "emoji": "✏️",
+      "anchor": "RightCheek",
+      "offsetX": 0.35,
+      "offsetY": 0.55,
+      "width": 0.3,
+      "rotation": -30,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [
+    {
+      "trigger": "MouthOpen",
+      "cooldownMs": 3000,
+      "actions": [
+        {
+          "type": "popup",
+          "text": "Um, actually… 🤓"
+        }
+      ]
+    }
+  ],
+  "doubleTapFlip": true
+}

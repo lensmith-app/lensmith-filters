@@ -1,0 +1,63 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.sleepy",
+  "name": "Sleepy",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 0.85,
+  "warmth": -0.15,
+  "tint": 0,
+  "fade": 0.15,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "emoji": "💤",
+      "anchor": "Forehead",
+      "offsetX": 0.5,
+      "offsetY": 0.3,
+      "width": 0.32,
+      "rotation": 0,
+      "showWhen": "EyesClosed",
+      "hidden": false
+    }
+  ],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [
+    {
+      "trigger": "Blink",
+      "cooldownMs": 800,
+      "actions": [
+        {
+          "type": "burst",
+          "emoji": "💤",
+          "count": 4,
+          "style": "Fountain",
+          "size": 0.1,
+          "anchor": "Forehead"
+        }
+      ]
+    }
+  ],
+  "doubleTapFlip": true
+}

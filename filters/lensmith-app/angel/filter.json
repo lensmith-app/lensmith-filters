@@ -1,0 +1,83 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.angel",
+  "name": "Angel",
+  "brightness": 0.08,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": 0.08,
+  "tint": 0,
+  "fade": 0.12,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "emoji": "🕊️",
+      "anchor": "LeftCheek",
+      "offsetX": -0.7,
+      "offsetY": -0.45,
+      "width": 0.45,
+      "rotation": 10,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "emoji": "🕊️",
+      "anchor": "RightCheek",
+      "offsetX": 0.7,
+      "offsetY": -0.45,
+      "width": 0.45,
+      "rotation": -10,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "emoji": "✨",
+      "anchor": "Forehead",
+      "offsetX": 0,
+      "offsetY": 0.3,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [
+    {
+      "trigger": "EveryTwoSeconds",
+      "cooldownMs": 250,
+      "actions": [
+        {
+          "type": "burst",
+          "emoji": "✨",
+          "count": 4,
+          "style": "Fountain",
+          "size": 0.06,
+          "anchor": "Forehead"
+        }
+      ]
+    }
+  ],
+  "doubleTapFlip": true
+}

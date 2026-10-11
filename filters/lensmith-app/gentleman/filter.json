@@ -1,0 +1,58 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.gentleman",
+  "name": "Gentleman",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": 0,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0.4,
+  "grain": 0,
+  "colorize": [
+    1,
+    0.88,
+    0.7
+  ],
+  "colorizeAmount": 0.35,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "emoji": "🎩",
+      "anchor": "Forehead",
+      "offsetX": 0,
+      "offsetY": 0.304,
+      "width": 0.75,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "emoji": "🌹",
+      "anchor": "Chin",
+      "offsetX": 0.55,
+      "offsetY": -0.35,
+      "width": 0.28,
+      "rotation": 20,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true
+}
