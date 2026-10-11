@@ -1,5 +1,9 @@
 {
-  "version": 1,
+  "version": 2,
   "description": "Smile to make it rain hearts; blink for a heart burst.",
-  "tags": ["love", "cute", "interactive"]
+  "tags": [
+    "love",
+    "cute",
+    "interactive"
+  ]
 }
