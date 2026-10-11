@@ -4,9 +4,9 @@ var ART = ["✨", "✨", "✨", "💎", "⭐"];
 
 function update(lens, dt) {
   var s = lens.screen;
-  while (sparkles.length < 26) {
+  while (sparkles.length < 40) {
     sparkles.push({ x: lens.random(0, 1), y: lens.random(0, s.top), age: lens.random(-1.5, 0), life: lens.random(0.8, 1.6),
-      size: lens.random(0.03, 0.08), art: ART[Math.floor(lens.random(0, ART.length))], spin: lens.random(-60, 60) });
+      size: lens.random(0.04, 0.11), art: ART[Math.floor(lens.random(0, ART.length))], spin: lens.random(-60, 60) });
   }
   for (var i = sparkles.length - 1; i >= 0; i--) {
     var p = sparkles[i];

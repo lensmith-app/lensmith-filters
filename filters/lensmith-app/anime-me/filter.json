@@ -64,13 +64,13 @@
   "warps": [
     {
       "anchor": "LeftEye",
-      "radius": 0.3,
-      "strength": 0.5
+      "radius": 0.24,
+      "strength": 0.34
     },
     {
       "anchor": "RightEye",
-      "radius": 0.3,
-      "strength": 0.5
+      "radius": 0.24,
+      "strength": 0.34
     },
     {
       "anchor": "Chin",
