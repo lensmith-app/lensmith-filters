@@ -1,0 +1,114 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 6,
+  "id": "lensmith-app.movie-toon",
+  "name": "Movie Toon",
+  "brightness": 0.07,
+  "contrast": 1.06,
+  "saturation": 1.35,
+  "warmth": 0.18,
+  "tint": 0.05,
+  "fade": 0,
+  "vignette": 0.12,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "Toon",
+  "effectParam": 1,
+  "stickers": [
+    {
+      "drawing": "Blush",
+      "anchor": "LeftCheek",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.26,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "drawing": "Blush",
+      "anchor": "RightCheek",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.26,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [
+    {
+      "anchor": "LeftEye",
+      "radius": 0.3,
+      "strength": 0.42
+    },
+    {
+      "anchor": "RightEye",
+      "radius": 0.3,
+      "strength": 0.42
+    },
+    {
+      "anchor": "Chin",
+      "radius": 0.32,
+      "strength": -0.2
+    },
+    {
+      "anchor": "NoseTip",
+      "radius": 0.16,
+      "strength": -0.3
+    },
+    {
+      "anchor": "LeftCheek",
+      "radius": 0.28,
+      "strength": -0.1
+    },
+    {
+      "anchor": "RightCheek",
+      "radius": 0.28,
+      "strength": -0.1
+    }
+  ],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [
+    {
+      "trigger": "Start",
+      "cooldownMs": 250,
+      "actions": [
+        {
+          "type": "popup",
+          "text": "✨ Movie magic ✨"
+        }
+      ]
+    },
+    {
+      "trigger": "Smile",
+      "cooldownMs": 1200,
+      "actions": [
+        {
+          "type": "burst",
+          "emoji": "✨",
+          "anchor": "Forehead",
+          "count": 14,
+          "style": "Explode",
+          "size": 0.08
+        }
+      ]
+    }
+  ],
+  "doubleTapFlip": true
+}
