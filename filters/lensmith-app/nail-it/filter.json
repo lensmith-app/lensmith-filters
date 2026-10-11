@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 5,
+  "minAppVersion": 6,
   "id": "lensmith-app.nail-it",
   "name": "Nail It",
   "brightness": 0,
@@ -34,5 +34,6 @@
   ],
   "rules": [],
   "doubleTapFlip": false,
-  "script": "script.js"
+  "script": "script.js",
+  "immersive": true
 }

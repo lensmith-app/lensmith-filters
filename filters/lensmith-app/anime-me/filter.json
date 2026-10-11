@@ -1,0 +1,99 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 6,
+  "id": "lensmith-app.anime-me",
+  "name": "Anime Me",
+  "brightness": 0.05,
+  "contrast": 1.1,
+  "saturation": 1.4,
+  "warmth": 0,
+  "tint": 0.1,
+  "fade": 0,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "Toon",
+  "effectParam": 1,
+  "stickers": [
+    {
+      "emoji": "✨",
+      "anchor": "LeftEye",
+      "offsetX": 0.1,
+      "offsetY": 0.1,
+      "width": 0.1,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "emoji": "✨",
+      "anchor": "RightEye",
+      "offsetX": 0.1,
+      "offsetY": 0.1,
+      "width": 0.1,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "drawing": "Blush",
+      "anchor": "LeftCheek",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "drawing": "Blush",
+      "anchor": "RightCheek",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [
+    {
+      "anchor": "LeftEye",
+      "radius": 0.3,
+      "strength": 0.5
+    },
+    {
+      "anchor": "RightEye",
+      "radius": 0.3,
+      "strength": 0.5
+    },
+    {
+      "anchor": "Chin",
+      "radius": 0.3,
+      "strength": -0.25
+    },
+    {
+      "anchor": "NoseTip",
+      "radius": 0.15,
+      "strength": -0.25
+    }
+  ],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true
+}
