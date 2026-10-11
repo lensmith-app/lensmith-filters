@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "description": "Tilt your head to steer the snake. Eat apples, grow longer, don't crash!",
+  "tags": [
+    "game",
+    "tilt",
+    "classic"
+  ]
+}
