@@ -16,6 +16,7 @@ function tap(lens) {
     if (score <= VERDICTS[i][0]) { var v = VERDICTS[i][1]; verdict = v[Math.floor(lens.random(0, v.length))]; break; }
   }
   state = "spinning"; t = 0;
+  lens.sound("whoosh", 0.6);
 }
 
 function update(lens, dt) {
@@ -24,7 +25,7 @@ function update(lens, dt) {
   if (state === "spinning") {
     t += dt;
     shown = 1 + Math.floor(Math.abs(Math.sin(t * (9 - t * 2.5))) * 9.99);
-    if (t > 2.4) { shown = score; state = "done"; if (score >= 9) lens.burst("🔥", 0.5, y, 12, "Explode", 0.07); lens.flash(1, 1, 1); }
+    if (t > 2.4) { shown = score; state = "done"; lens.sound(score >= 9 ? "powerup" : "ding"); if (score >= 9) lens.burst("🔥", 0.5, y, 12, "Explode", 0.07); lens.flash(1, 1, 1); }
   }
   lens.text("Vibe check", 0.5, s.top - 0.18, 0.065);
   if (state === "idle") { lens.text("Tap to rate your vibe", 0.5, s.top - 0.27, 0.05); return; }

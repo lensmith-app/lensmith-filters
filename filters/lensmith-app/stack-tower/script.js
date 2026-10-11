@@ -18,7 +18,7 @@ function newBlock() {
 }
 
 function tap(lens) {
-  if (state === "ready" || (state === "over" && lens.time - endTime > 0.8)) { reset(); state = "playing"; return; }
+  if (state === "ready" || (state === "over" && lens.time - endTime > 0.8)) { reset(); state = "playing"; lens.music("chill", 0.35); return; }
   if (state !== "playing") return;
   var top = rows[rows.length - 1];
   // Snap to the tile grid of the block below.
@@ -26,17 +26,20 @@ function tap(lens) {
   var n = moving.n - Math.abs(offset);
   if (n <= 0) {
     falling.push({ x: moving.x, y: rows.length, n: moving.n, color: moving.color, vy: 0 });
+    lens.music(null); lens.sound("lose");
     state = "over"; endTime = lens.time; best = Math.max(best, rows.length - 1); lens.flash(1, 0.4, 0.4);
     return;
   }
   var x = offset > 0 ? top.x + offset * TILE : top.x;
   if (offset !== 0) {
+    lens.sound("kick", 0.8);
     // The overhanging part tumbles away.
     var cutX = offset > 0 ? x + n * TILE : top.x + offset * TILE;
     falling.push({ x: cutX, y: rows.length, n: Math.abs(offset), color: moving.color, vy: 0 });
   } else {
     lens.burst("✨", x + n * TILE / 2, 0, 10, "Explode", 0.04);
     lens.popup("Perfect!");
+    lens.sound("sparkle");
   }
   rows.push({ x: x, n: n, color: moving.color });
   speed = Math.min(1.1, speed + 0.03);

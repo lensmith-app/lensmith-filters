@@ -4,7 +4,7 @@ var state = "ready", t = 0, eaten = 0, bites = 0, wasOpen = false, best = 0, end
 
 function tap(lens) {
   if (state === "playing" || (state === "over" && lens.time - endTime < 1)) return;
-  state = "playing"; t = 0; eaten = 0; bites = 0;
+  state = "playing"; t = 0; eaten = 0; bites = 0; lens.music("beat", 0.35);
 }
 
 function update(lens, dt) {
@@ -16,13 +16,14 @@ function update(lens, dt) {
       var open = f.mouthOpen > 0.35;
       if (wasOpen && !open) {                 // a chomp = mouth closing
         bites++;
+        lens.sound("chomp", 0.9, lens.random(0.85, 1.15));
         wiggle = 0.25;
         lens.burst("✨", f.anchors.Mouth.x, f.anchors.Mouth.y, 3, "Explode", 0.03);
-        if (bites >= BITES) { bites = 0; eaten++; lens.burst("✨", f.anchors.Mouth.x, f.anchors.Mouth.y, 8, "Explode", 0.04); }
+        if (bites >= BITES) { bites = 0; eaten++; lens.sound("coin"); lens.burst("✨", f.anchors.Mouth.x, f.anchors.Mouth.y, 8, "Explode", 0.04); }
       }
       wasOpen = open;
     }
-    if (t >= LENGTH) { state = "over"; endTime = lens.time; best = Math.max(best, eaten); lens.flash(1, 0.9, 0.4); }
+    if (t >= LENGTH) { state = "over"; lens.music(null); lens.sound("win"); endTime = lens.time; best = Math.max(best, eaten); lens.flash(1, 0.9, 0.4); }
   }
   wiggle = Math.max(0, wiggle - dt);
 

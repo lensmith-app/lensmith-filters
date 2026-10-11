@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 6,
+  "minAppVersion": 15,
   "id": "lensmith-app.snake",
   "name": "Snake",
   "brightness": 0,

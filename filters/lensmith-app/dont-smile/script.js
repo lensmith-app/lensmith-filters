@@ -5,7 +5,7 @@ var LINES = ["Don't do it...", "Stay serious 😐", "Think about taxes", "Almost
 var state = "ready", t = 0, nextJoke = 0, line = 0;
 
 function tap(lens) {
-  if (state !== "playing") { state = "playing"; t = 0; nextJoke = 0.5; lens.popup("Go! 😐"); }
+  if (state !== "playing") { state = "playing"; t = 0; nextJoke = 0.5; lens.music("chill", 0.35); lens.popup("Go! 😐"); }
 }
 
 function update(lens, dt) {
@@ -23,10 +23,12 @@ function update(lens, dt) {
     }
     if (f && f.smiling) {
       state = "lost";
+      lens.music(null); lens.sound("lose");
       lens.burst("😂", f.x, f.y, 16, "Explode", 0.1);
       lens.flash(1, 0.5, 0.5);
     } else if (t >= LENGTH) {
       state = "won";
+      lens.music(null); lens.sound("win");
       lens.burst("🏆", 0.5, s.top * 0.6, 1, "Explode", 0.25);
       lens.flash(1, 0.9, 0.4);
     }

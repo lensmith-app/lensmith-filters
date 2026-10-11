@@ -5,11 +5,12 @@ function tap(lens) {
   if (state === "ready" || state === "result" || state === "early") {
     state = "waiting"; waitLeft = lens.random(1.5, 4);
   } else if (state === "waiting") {
-    state = "early"; lens.flash(1, 0.3, 0.3);
+    state = "early"; lens.flash(1, 0.3, 0.3); lens.sound("buzz");
   } else if (state === "go") {
     result = Math.round((lens.time - shownAt) * 1000);
     best = best ? Math.min(best, result) : result;
     state = "result";
+    lens.sound(result < 300 ? "powerup" : "ding");
     lens.burst("⚡", 0.5, lens.screen.top * 0.6, 10, "Explode", 0.06);
   }
 }
@@ -19,7 +20,7 @@ function update(lens, dt) {
   var mid = s.top * 0.6;
   if (state === "waiting") {
     waitLeft -= dt;
-    if (waitLeft <= 0) { state = "go"; shownAt = lens.time; }
+    if (waitLeft <= 0) { state = "go"; shownAt = lens.time; lens.sound("tick"); }
   }
   lens.text("Reaction Time", 0.5, s.top - 0.18, 0.07);
   if (state === "ready") lens.text("Tap to start, then tap on 🟢", 0.5, mid, 0.055);

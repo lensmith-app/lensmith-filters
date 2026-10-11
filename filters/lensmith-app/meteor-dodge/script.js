@@ -24,6 +24,7 @@ function update(lens, dt) {
     r.y -= r.v * dt;
     if (state === "playing" && Math.abs(r.x - rocketX) < 0.075 && Math.abs(r.y - y) < 0.08) {
       state = "over";
+      lens.music(null); lens.sound("boom"); lens.sound("lose", 0.6);
       endTime = lens.time;
       best = Math.max(best, alive);
       lens.burst("💥", rocketX, y, 1, "Explode", 0.2);
@@ -44,5 +45,5 @@ function update(lens, dt) {
 }
 
 function tap(lens) {
-  if (state === "over" && lens.time - endTime > 0.8) { rocks = []; alive = 0; spawn = 0.5; state = "playing"; }
+  if (state === "over" && lens.time - endTime > 0.8) { rocks = []; alive = 0; spawn = 0.5; state = "playing"; lens.music("arcade", 0.3); }
 }

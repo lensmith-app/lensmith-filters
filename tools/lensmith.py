@@ -24,6 +24,19 @@ MAX_IMAGE_SIDE = 2048
 MAX_THUMB_SIDE = 512
 
 
+AUDIO_ASSETS = {".ogg", ".mp3", ".wav", ".m4a"}
+# Scripts using these need Lensmith 0.10 (versionCode 15).
+SENSES_RE = re.compile(r"lens\.(sound|music)\s*\(|lens\.(hands|pose)\b")
+SENSES_APP_VERSION = 15
+
+
+def is_audio(path) -> bool:
+    """A real sound file (checked by its first bytes, not just the name)."""
+    head = Path(path).read_bytes()[:12]
+    return (head.startswith(b"OggS") or head.startswith(b"ID3") or head[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")
+            or (head.startswith(b"RIFF") and head[8:12] == b"WAVE") or head[4:8] == b"ftyp")
+
+
 @dataclass
 class Filter:
     creator: str

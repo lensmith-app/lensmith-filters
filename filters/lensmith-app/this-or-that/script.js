@@ -42,9 +42,10 @@ function update(lens, dt) {
     if (hold > 0.35) {
       var pick = l < 0 ? q[0] : q[2];
       picks.push(pick);
+      lens.sound("swish");
       lens.burst(pick, l < 0 ? 0.22 : 0.78, cy, 6, "Explode", 0.06);
       index++; hold = 0; cooldown = 0.6;
-      if (index >= order.length) { state = "done"; lens.flash(1, 0.95, 0.7); }
+      if (index >= order.length) { state = "done"; lens.flash(1, 0.95, 0.7); lens.sound("sparkle"); }
     }
     if (state === "playing") {
       q = order[index];

@@ -16,13 +16,13 @@ function rack(lens) {
 
 function tap(lens) {
   if (state !== "playing") { rack(lens); throws = 0; state = "playing"; phase = "aim"; return; }
-  if (phase === "aim") { phase = "power"; return; }
+  if (phase === "aim") { phase = "power"; lens.sound("click"); return; }
   if (phase === "power") {
     // Power 0..1 decides how far up the table it lands: low power = the nearest cup.
     var s = lens.screen;
     var landY = apexY(lens) - 0.03 + power * 0.2;
     ball = { t: 0, x0: aimX, y0: s.top * 0.3, x1: aimX, y1: landY };
-    phase = "flying"; throws++;
+    phase = "flying"; throws++; lens.sound("whoosh", 0.7);
   }
 }
 
@@ -52,12 +52,12 @@ function update(lens, dt) {
         var cp = cups[j];
         if (!cp.in && Math.abs(cp.x - ball.x1) < 0.045 && Math.abs(cp.y + 0.02 - ball.y1) < 0.04) { sunk = cp; break; }
       }
-      if (sunk) { sunk.in = true; result = "SPLASH! 💦"; lens.burst("💦", sunk.x, sunk.y + 0.04, 10, "Fountain", 0.04); }
+      if (sunk) { sunk.in = true; lens.sound("splash"); result = "SPLASH! 💦"; lens.burst("💦", sunk.x, sunk.y + 0.04, 10, "Fountain", 0.04); }
       else result = "Miss";
       resultTime = lens.time; ball = null; phase = "aim";
       var left = 0;
       for (var m = 0; m < cups.length; m++) if (!cups[m].in) left++;
-      if (left === 0) { state = "won"; best = best ? Math.min(best, throws) : throws; lens.flash(1, 0.9, 0.5); }
+      if (left === 0) { state = "won"; lens.sound("win"); best = best ? Math.min(best, throws) : throws; lens.flash(1, 0.9, 0.5); }
     }
   }
   if (state === "playing" && phase !== "flying") {

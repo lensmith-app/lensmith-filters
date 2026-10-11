@@ -6,6 +6,7 @@ var ball = null, saved = 0, taken = 0, state = "ready", best = 0, next = 0, resu
 function shoot(lens) {
   var s = lens.screen;
   var speed = Math.max(0.75, 1.3 - taken * 0.05);    // later shots are faster
+  lens.sound("kick");
   ball = { t: 0, dur: speed, tx: lens.random(0.2, 0.8), ty: lens.random(s.top * 0.35, s.top * 0.7), curve: lens.random(-0.15, 0.15) };
 }
 
@@ -38,10 +39,10 @@ function update(lens, dt) {
       if (k >= 1) {
         taken++;
         if (Math.abs(gloveX - ball.tx) < 0.16 && Math.abs(gloveY - ball.ty) < 0.18) {
-          saved++; result = "SAVED! 🧤"; lens.burst("✨", ball.tx, ball.ty, 12, "Explode", 0.05);
-        } else { result = "GOAL…"; lens.flash(1, 0.5, 0.4); }
+          saved++; result = "SAVED! 🧤"; lens.sound("whip"); lens.burst("✨", ball.tx, ball.ty, 12, "Explode", 0.05);
+        } else { result = "GOAL…"; lens.sound("buzz", 0.8); lens.flash(1, 0.5, 0.4); }
         resultTime = lens.time; ball = null; next = 0.9;
-        if (taken >= SHOTS) { state = "over"; best = Math.max(best, saved); }
+        if (taken >= SHOTS) { state = "over"; lens.sound(saved >= SHOTS / 2 ? "win" : "lose"); best = Math.max(best, saved); }
       }
     }
   }

@@ -27,14 +27,15 @@ function tap(lens, x, y) {
     if (c.up || c.done) continue;
     if (Math.abs(x - c.x) < CW / 2 && Math.abs(y - c.y) < CW * 0.67) {
       c.up = true; open.push(c);
+      lens.sound("click");
       if (open.length === 2) {
         moves++;
         if (open[0].face === open[1].face) {
-          open[0].done = open[1].done = true; matched++;
+          open[0].done = open[1].done = true; matched++; lens.sound("ding");
           lens.burst("✨", (open[0].x + open[1].x) / 2, (open[0].y + open[1].y) / 2, 10, "Explode", 0.04);
           open = [];
-          if (matched === FACES.length) { state = "won"; best = best ? Math.min(best, moves) : moves; lens.flash(1, 0.9, 0.6); }
-        } else hideAt = lens.time + 0.8;
+          if (matched === FACES.length) { state = "won"; lens.sound("win"); best = best ? Math.min(best, moves) : moves; lens.flash(1, 0.9, 0.6); }
+        } else { hideAt = lens.time + 0.8; lens.sound("buzz", 0.5); }
       }
       return;
     }

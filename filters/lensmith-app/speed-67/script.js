@@ -6,11 +6,12 @@ var RANKS = [[30, "Warming up 🐢"], [50, "Quick fingers ⚡"], [67, "So close 
 function tap(lens) {
   if (state === "playing") {
     count++; taps.push(lens.time);
-    if (count === 67 && !hit67) { hit67 = true; lens.flash(1, 0.85, 0.2); lens.burst("🔥", 0.5, lens.screen.top * 0.6, 20, "Explode", 0.07); lens.popup("67!!"); }
+    lens.sound("tick", 0.6, Math.min(2, 0.8 + count * 0.012));
+    if (count === 67 && !hit67) { hit67 = true; lens.sound("powerup"); lens.flash(1, 0.85, 0.2); lens.burst("🔥", 0.5, lens.screen.top * 0.6, 20, "Explode", 0.07); lens.popup("67!!"); }
     return;
   }
   if (state === "over" && lens.time - endTime < 1.2) return;
-  state = "playing"; count = 0; t = 0; taps = []; hit67 = false;
+  state = "playing"; count = 0; t = 0; taps = []; hit67 = false; lens.music("beat", 0.35);
 }
 
 function update(lens, dt) {
@@ -18,7 +19,7 @@ function update(lens, dt) {
   var gy = s.top * 0.62;
   if (state === "playing") {
     t += dt;
-    if (t >= LENGTH) { state = "over"; endTime = lens.time; best = Math.max(best, count); }
+    if (t >= LENGTH) { state = "over"; lens.music(null); lens.sound(count >= 67 ? "win" : "ding"); endTime = lens.time; best = Math.max(best, count); }
   }
   // Taps per second over the last second drives the needle (0..12 taps/s).
   while (taps.length && lens.time - taps[0] > 1) taps.shift();

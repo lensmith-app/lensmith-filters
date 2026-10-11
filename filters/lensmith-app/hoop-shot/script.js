@@ -14,6 +14,7 @@ function tap(lens) {
   var flight = vy / G + Math.sqrt(2 * 0.25 / G);
   ball = { x: 0.5, y: s.top * 0.3, vx: (-aim / 28) * 0.3 / flight, vy: vy, scored: false };
   state = "flying";
+  lens.sound("whoosh", 0.7);
 }
 
 function update(lens, dt) {
@@ -35,11 +36,12 @@ function update(lens, dt) {
     // Score when the ball drops down through the rim.
     if (ball.vy < 0 && !ball.scored && Math.abs(ball.y - (rimY - 0.015)) < 0.03) {
       if (Math.abs(ball.x - hoopX) < rimW / 2 - 0.02) {
-        ball.scored = true; made++; streak++;
+        ball.scored = true; made++; streak++; lens.sound(streak >= 3 ? "powerup" : "swish");
         lens.burst("✨", hoopX, rimY, 12, "Explode", 0.05);
         result = streak >= 3 ? "ON FIRE! 🔥" : "Swish!"; resultTime = lens.time;
       } else if (Math.abs(ball.x - hoopX) < rimW / 2 + 0.03) {
         ball.vx = -ball.vx * 0.6; ball.vy = Math.abs(ball.vy) * 0.4;   // clanked off the rim
+        lens.sound("bounce", 0.8);
       }
     }
     if (ball.y < s.top * 0.15 || ball.x < -0.2 || ball.x > 1.2) {
@@ -47,7 +49,7 @@ function update(lens, dt) {
       if (!ball.scored) { streak = 0; result = "Miss"; resultTime = lens.time; }
       ball = null;
       state = taken >= SHOTS ? "over" : "aiming";
-      if (state === "over") { best = Math.max(best, made); lens.flash(1, 0.9, 0.5); }
+      if (state === "over") { best = Math.max(best, made); lens.sound("win"); lens.flash(1, 0.9, 0.5); }
     }
   }
   if (ball) lens.sprite("assets/basketball.png", ball.x, ball.y, 0.1, lens.time * 300);

@@ -13,9 +13,9 @@ function lean(f) {
 }
 
 function tap(lens, x) {
-  if (state === "over" && lens.time - endTime > 0.8) { cars = []; dist = 0; spawn = 0.8; lane = 1; state = "playing"; return; }
+  if (state === "over" && lens.time - endTime > 0.8) { cars = []; dist = 0; spawn = 0.8; lane = 1; state = "playing"; lens.music("beat", 0.3); return; }
   // Taps steer too: left or right half of the screen.
-  if (state === "playing") lane = Math.max(0, Math.min(2, lane + (x < 0.5 ? -1 : 1)));
+  if (state === "playing") { lane = Math.max(0, Math.min(2, lane + (x < 0.5 ? -1 : 1))); lens.sound("swish", 0.5); }
 }
 
 function update(lens, dt) {
@@ -25,7 +25,7 @@ function update(lens, dt) {
   var speed = 0.6 + dist * 0.004;
   if (lens.face && state === "playing") {
     var l = lean(lens.face);
-    if (l !== 0 && l !== leanWas) lane = Math.max(0, Math.min(2, lane + l));
+    if (l !== 0 && l !== leanWas) { lane = Math.max(0, Math.min(2, lane + l)); lens.sound("swish", 0.5); }
     leanWas = l;
   }
   carX += (LANES[lane] - carX) * Math.min(1, dt * 10);
@@ -50,6 +50,7 @@ function update(lens, dt) {
     if (state === "playing") c.y -= speed * dt;
     if (state === "playing" && Math.abs(LANES[c.lane] - carX) < 0.12 && Math.abs(c.y - y) < 0.1) {
       state = "over"; endTime = lens.time; best = Math.max(best, Math.floor(dist));
+      lens.music(null); lens.sound("boom"); lens.sound("lose", 0.6);
       lens.burst("💥", carX, y, 1, "Explode", 0.2); lens.flash(1, 0.4, 0.2);
     }
     if (c.y < s.top * 0.15) { cars.splice(i, 1); continue; }

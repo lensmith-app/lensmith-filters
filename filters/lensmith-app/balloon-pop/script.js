@@ -5,13 +5,14 @@ var balloons = [], score = 0, t = 0, spawn = 0, state = "ready", best = 0;
 
 function tap(lens, x, y) {
   if (state !== "playing") {
-    state = "playing"; t = 0; score = 0; balloons = []; spawn = 0;
+    state = "playing"; t = 0; score = 0; balloons = []; spawn = 0; lens.music("arcade", 0.35);
     return;
   }
   for (var i = balloons.length - 1; i >= 0; i--) {
     var b = balloons[i];
     if (Math.abs(x - b.x) < b.size * 0.55 && Math.abs(y - b.y) < b.size * 0.7) {
       score += b.gold ? 3 : 1;
+      lens.sound(b.gold ? "coin" : "pop", 1, lens.random(0.85, 1.2));
       lens.burst(b.gold ? "⭐" : "💥", b.x, b.y, b.gold ? 8 : 1, "Explode", b.gold ? 0.05 : 0.12);
       balloons.splice(i, 1);
       return;
@@ -32,7 +33,7 @@ function update(lens, dt) {
         v: lens.random(0.25, 0.45) + t * 0.01, sway: lens.random(0, 6), gold: gold });
       spawn = Math.max(0.3, 0.8 - t * 0.015);
     }
-    if (t >= LENGTH) { state = "over"; best = Math.max(best, score); lens.flash(1, 0.9, 0.5); }
+    if (t >= LENGTH) { state = "over"; lens.music(null); lens.sound("win"); best = Math.max(best, score); lens.flash(1, 0.9, 0.5); }
   }
   for (var i = balloons.length - 1; i >= 0; i--) {
     var b = balloons[i];

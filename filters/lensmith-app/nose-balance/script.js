@@ -11,7 +11,7 @@ function slope(f) {
 function tap(lens) {
   if (state === "playing" || (state === "over" && lens.time - endTime < 0.8)) return;
   if (!lens.face) return;
-  state = "playing"; t = 0; offset = lens.random(-0.01, 0.01); vel = 0; prevNose = null;
+  state = "playing"; lens.sound("bounce"); t = 0; offset = lens.random(-0.01, 0.01); vel = 0; prevNose = null;
 }
 
 function update(lens, dt) {
@@ -30,13 +30,14 @@ function update(lens, dt) {
     offset += vel * dt;
     spin += vel * dt * 2000;
     if (Math.abs(offset) > f.width * 0.45) {
+      lens.sound("whoosh");
       state = "falling"; fallX = nose + offset; fallY = f.anchors.NoseTip.y + size * 0.6; fallV = 0;
       best = Math.max(best, t); endTime = lens.time;
     }
   }
   if (state === "falling") {
     fallV += 2.5 * dt; fallY -= fallV * dt; fallX += (offset > 0 ? 0.3 : -0.3) * dt; spin += 400 * dt;
-    if (fallY < s.top * 0.1) { state = "over"; lens.flash(1, 0.5, 0.4); }
+    if (fallY < s.top * 0.1) { state = "over"; lens.sound("lose"); lens.flash(1, 0.5, 0.4); }
     lens.sprite("assets/beachball.png", fallX, fallY, size, spin);
   }
   if (f && (state === "playing" || state === "ready")) {

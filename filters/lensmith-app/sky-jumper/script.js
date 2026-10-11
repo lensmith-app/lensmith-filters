@@ -13,7 +13,7 @@ function reset(lens) {
 function tap(lens, x) {
   if (state !== "playing") {
     if (state === "over" && lens.time - endTime < 0.8) return;
-    reset(lens); state = "playing"; return;
+    reset(lens); state = "playing"; lens.music("arcade", 0.3); return;
   }
   tapPush = x < 0.5 ? -0.25 : 0.25;
 }
@@ -35,7 +35,7 @@ function update(lens, dt) {
       for (var i = 0; i < platforms.length; i++) {
         var p = platforms[i];
         if (Math.abs(px - p.x) < PW / 2 + 0.03 && py - 0.06 <= p.y + 0.02 && py - 0.06 >= p.y - 0.04) {
-          vy = 1.65; lens.burst("✨", px, p.y + 0.02, 4, "Explode", 0.03);
+          vy = 1.65; lens.sound("jump", 0.6, lens.random(0.95, 1.2)); lens.burst("✨", px, p.y + 0.02, 4, "Explode", 0.03);
         }
       }
     }
@@ -55,7 +55,7 @@ function update(lens, dt) {
         q.moving = height > 40 && Math.random() < 0.3;
       }
     }
-    if (py - camera < s.top * 0.1) { state = "over"; endTime = lens.time; best = Math.max(best, height); lens.flash(1, 0.5, 0.4); }
+    if (py - camera < s.top * 0.1) { state = "over"; lens.music(null); lens.sound("lose"); endTime = lens.time; best = Math.max(best, height); lens.flash(1, 0.5, 0.4); }
   }
   for (var m = 0; m < platforms.length; m++) {
     var sy = platforms[m].y - camera;

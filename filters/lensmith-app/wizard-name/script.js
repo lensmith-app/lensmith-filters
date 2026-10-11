@@ -25,9 +25,9 @@ function update(lens, dt) {
     if (locked < 1) parts[0] = pick(lens, TITLES);
     if (locked < 2) parts[1] = pick(lens, FIRST) + pick(lens, LAST);
     if (locked < 3) parts[2] = pick(lens, OF);
-    if (t > 0.9 && locked === 0) { locked = 1; lens.burst("✨", 0.5, y + 0.12, 6, "Explode", 0.04); }
-    if (t > 1.8 && locked === 1) { locked = 2; lens.burst("✨", 0.5, y + 0.03, 6, "Explode", 0.04); }
-    if (t > 2.7) { locked = 3; state = "done"; lens.flash(0.8, 0.6, 1); lens.burst("🪄", x, y, 1, "Explode", 0.15); }
+    if (t > 0.9 && locked === 0) { locked = 1; lens.sound("ding", 0.7); lens.burst("✨", 0.5, y + 0.12, 6, "Explode", 0.04); }
+    if (t > 1.8 && locked === 1) { locked = 2; lens.sound("ding", 0.7, 1.2); lens.burst("✨", 0.5, y + 0.03, 6, "Explode", 0.04); }
+    if (t > 2.7) { locked = 3; state = "done"; lens.sound("sparkle"); lens.flash(0.8, 0.6, 1); lens.burst("🪄", x, y, 1, "Explode", 0.15); }
   }
   if (f) lens.sprite("🧙", x + f.width * 0.55, f.y + f.width * 0.55, f.width * 0.25, -10, 0.9);
   lens.text("My wizard name is…", 0.5, s.top - 0.18, 0.06);
