@@ -55,7 +55,7 @@ function update(lens, dt) {
   lens.text(TITLE, 0.5, s.top - 0.2, 0.065);
   if (state === "idle") {
     lens.sprite("❔", x, y, size);
-    lens.text("Tap to find out!", 0.5, s.top - 0.29, 0.05);
+    lens.text("Tap to find out!", x, y - size * 0.75, 0.05);
     return;
   }
   var o = OPTIONS[shown];
@@ -64,6 +64,6 @@ function update(lens, dt) {
   lens.text(o[1], x, y - size * 0.6, 0.06);
   if (state === "done") {
     if (spinTime < 3.05) lens.burst("✨", x, y, 14, "Explode", 0.05);
-    lens.text("Tap to try again", 0.5, s.top - 0.29, 0.045, 0.8);
+    lens.text("Tap to try again", x, y - size * 0.6 - 0.08, 0.04, 0.8);
   }
 }

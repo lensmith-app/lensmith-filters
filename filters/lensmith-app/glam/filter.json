@@ -3,7 +3,7 @@
   "minAppVersion": 6,
   "id": "lensmith-app.glam",
   "name": "Glam",
-  "brightness": 0.05,
+  "brightness": 0.07,
   "contrast": 1.04,
   "saturation": 1.1,
   "warmth": 0.15,
@@ -18,7 +18,7 @@
   ],
   "colorizeAmount": 0,
   "effect": "Toon",
-  "effectParam": 0.3,
+  "effectParam": 0.45,
   "stickers": [],
   "warps": [
     {
