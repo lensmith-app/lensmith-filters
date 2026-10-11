@@ -1,0 +1,94 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.baby-face",
+  "name": "Baby Face",
+  "brightness": 0.05,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": 0,
+  "tint": 0,
+  "fade": 0.08,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "drawing": "Blush",
+      "anchor": "LeftCheek",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "drawing": "Blush",
+      "anchor": "RightCheek",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [
+    {
+      "anchor": "LeftEye",
+      "radius": 0.24,
+      "strength": 0.3
+    },
+    {
+      "anchor": "RightEye",
+      "radius": 0.24,
+      "strength": 0.3
+    },
+    {
+      "anchor": "NoseTip",
+      "radius": 0.18,
+      "strength": -0.3
+    },
+    {
+      "anchor": "Chin",
+      "radius": 0.32,
+      "strength": -0.25
+    },
+    {
+      "anchor": "LeftCheek",
+      "radius": 0.3,
+      "strength": 0.15
+    },
+    {
+      "anchor": "RightCheek",
+      "radius": 0.3,
+      "strength": 0.15
+    },
+    {
+      "anchor": "Mouth",
+      "radius": 0.2,
+      "strength": -0.2
+    }
+  ],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true
+}

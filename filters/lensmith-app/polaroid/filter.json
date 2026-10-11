@@ -1,0 +1,37 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.polaroid",
+  "name": "Polaroid",
+  "brightness": 0.05,
+  "contrast": 1,
+  "saturation": 0.85,
+  "warmth": 0.25,
+  "tint": 0,
+  "fade": 0.3,
+  "vignette": 0.35,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true
+}

@@ -1,0 +1,37 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.ocean-blue",
+  "name": "Ocean Blue",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": -0.1,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [],
+  "warps": [],
+  "background": "Gradient",
+  "backgroundTop": [
+    0.35,
+    0.8,
+    1
+  ],
+  "backgroundBottom": [
+    0.02,
+    0.2,
+    0.5
+  ],
+  "rules": [],
+  "doubleTapFlip": true
+}

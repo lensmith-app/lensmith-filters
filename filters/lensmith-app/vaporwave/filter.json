@@ -1,0 +1,37 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.vaporwave",
+  "name": "Vaporwave",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1.4,
+  "warmth": -0.2,
+  "tint": 0.45,
+  "fade": 0.15,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "Posterize",
+  "effectParam": 6,
+  "stickers": [],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true
+}

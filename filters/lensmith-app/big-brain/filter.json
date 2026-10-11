@@ -1,0 +1,79 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.big-brain",
+  "name": "Big Brain",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": 0,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "emoji": "🧠",
+      "anchor": "Forehead",
+      "offsetX": 0,
+      "offsetY": 0.176,
+      "width": 0.42,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [
+    {
+      "anchor": "Forehead",
+      "radius": 0.55,
+      "strength": 0.35
+    }
+  ],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [
+    {
+      "trigger": "Start",
+      "cooldownMs": 250,
+      "actions": [
+        {
+          "type": "popup",
+          "text": "Big brain time 🧠"
+        }
+      ]
+    },
+    {
+      "trigger": "Smile",
+      "cooldownMs": 1500,
+      "actions": [
+        {
+          "type": "burst",
+          "emoji": "💡",
+          "count": 8,
+          "style": "Fountain",
+          "size": 0.1,
+          "anchor": "Forehead"
+        }
+      ]
+    }
+  ],
+  "doubleTapFlip": true
+}

@@ -1,0 +1,82 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 3,
+  "id": "lensmith-app.money-eyes",
+  "name": "Money Eyes",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1,
+  "warmth": 0.1,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [
+    {
+      "emoji": "💲",
+      "anchor": "LeftEye",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    },
+    {
+      "emoji": "💲",
+      "anchor": "RightEye",
+      "offsetX": 0,
+      "offsetY": 0,
+      "width": 0.3,
+      "rotation": 0,
+      "showWhen": "Always",
+      "hidden": false
+    }
+  ],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [
+    {
+      "trigger": "Smile",
+      "cooldownMs": 1500,
+      "actions": [
+        {
+          "type": "burst",
+          "emoji": "💸",
+          "count": 18,
+          "style": "Rain",
+          "size": 0.14
+        }
+      ]
+    },
+    {
+      "trigger": "Start",
+      "cooldownMs": 250,
+      "actions": [
+        {
+          "type": "popup",
+          "text": "Cha-ching 💰"
+        }
+      ]
+    }
+  ],
+  "doubleTapFlip": true
+}
