@@ -49,16 +49,26 @@ def load_filters() -> list[L.Filter]:
     return filters
 
 
+THUMBNAIL_APP_VERSION = 7  # apps before 0.7.0 refuse packages that contain a thumbnail
+
+
+def needed_app_version(f: L.Filter) -> int:
+    v = f.filter_json.get("minAppVersion", 1)
+    return max(v, THUMBNAIL_APP_VERSION) if f.thumbnail else v
+
+
 def package(f: L.Filter) -> Path:
     """Zips a filter folder into a .lensmith file, with its store id written into filter.json."""
     PACKAGES.mkdir(parents=True, exist_ok=True)
     out = PACKAGES / f.package_name
-    manifest = dict(f.filter_json, id=f.key)
+    manifest = dict(f.filter_json, id=f.key, minAppVersion=needed_app_version(f))
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("filter.json", json.dumps(manifest, ensure_ascii=False, indent=2))
         script = f.path / L.SCRIPT_FILE
         if manifest.get("script") == L.SCRIPT_FILE and script.exists():
             z.write(script, L.SCRIPT_FILE)
+        if f.thumbnail:
+            z.write(f.thumbnail, f.thumbnail.name)
         assets = f.path / "assets"
         if assets.exists():
             for p in sorted(assets.iterdir()):
@@ -140,7 +150,7 @@ def build_site(repo: str, filters: list[L.Filter], totals: dict[str, int], trend
             "description": f.listing.get("description", ""),
             "tags": f.listing.get("tags", []),
             "version": f.version,
-            "minAppVersion": fj.get("minAppVersion", 1),
+            "minAppVersion": needed_app_version(f),
             "package": f"https://github.com/{repo}/releases/download/{f.tag}/{f.package_name}",
             "size": (PACKAGES / f.package_name).stat().st_size,
             "thumbnail": thumb,
