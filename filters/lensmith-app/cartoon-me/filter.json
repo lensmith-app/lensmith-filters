@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 8,
+  "minAppVersion": 10,
   "id": "lensmith-app.cartoon-me",
   "name": "Cartoon Me",
   "brightness": 0,

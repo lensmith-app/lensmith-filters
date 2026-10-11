@@ -16,6 +16,7 @@ import argparse
 import datetime as dt
 import html
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -50,6 +51,12 @@ def load_filters() -> list[L.Filter]:
 
 
 THUMBNAIL_APP_VERSION = 7  # apps before 0.7.0 refuse packages that contain a thumbnail
+
+
+def uses_ai(f: L.Filter) -> bool:
+    """Scripts that call lens.stylize() run on-device AI models."""
+    script = f.path / L.SCRIPT_FILE
+    return f.filter_json.get("script") == L.SCRIPT_FILE and script.exists() and         re.search(r"stylize\s*\(", script.read_text(encoding="utf-8")) is not None
 
 
 def needed_app_version(f: L.Filter) -> int:
@@ -155,7 +162,8 @@ def build_site(repo: str, filters: list[L.Filter], totals: dict[str, int], trend
             "size": (PACKAGES / f.package_name).stat().st_size,
             "thumbnail": thumb,
             "icon": next((s["emoji"] for s in fj.get("stickers", []) if "emoji" in s), None),
-            "interactive": bool(fj.get("rules") or fj.get("game")),
+            "interactive": bool(fj.get("rules") or fj.get("game") or fj.get("script")),
+            "ai": uses_ai(f),
             "downloads": totals.get(f.key, 0),
             "trending": trending.get(f.key, 0),
             "updated": last_updated(f),
