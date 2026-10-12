@@ -1,0 +1,38 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 15,
+  "id": "lensmith-app.bat-swarm",
+  "name": "Bat Swarm",
+  "brightness": 0,
+  "contrast": 1.08,
+  "saturation": 0.85,
+  "warmth": 0,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0.35,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": false,
+  "script": "script.js"
+}
