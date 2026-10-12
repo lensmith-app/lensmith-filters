@@ -1,0 +1,38 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 15,
+  "id": "lensmith-app.haunted",
+  "name": "Haunted",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 0.45,
+  "warmth": 0,
+  "tint": 0,
+  "fade": 0.15,
+  "vignette": 0.5,
+  "grain": 0.4,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "Vhs",
+  "effectParam": 0.8,
+  "stickers": [],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": false,
+  "script": "script.js"
+}
