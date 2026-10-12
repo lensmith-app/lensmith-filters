@@ -63,7 +63,8 @@ def needed_app_version(f: L.Filter) -> int:
     v = f.filter_json.get("minAppVersion", 1)
     if f.thumbnail:
         v = max(v, THUMBNAIL_APP_VERSION)
-    if f.filter_json.get("models"):
+    script_path = f.path / L.SCRIPT_FILE
+    if f.filter_json.get("models") or (script_path.exists() and re.search(r"lens\.faces\b", script_path.read_text(encoding="utf-8"))):
         v = max(v, L.MODELS_APP_VERSION)
     script = f.path / L.SCRIPT_FILE
     if f.filter_json.get("script") == L.SCRIPT_FILE and script.exists() and L.SENSES_RE.search(script.read_text(encoding="utf-8")):
