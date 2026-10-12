@@ -72,8 +72,12 @@ def check_filter(f: L.Filter) -> list[str]:
             elif rel == L.SCRIPT_FILE and size > L.MAX_SCRIPT_BYTES:
                 errors.append(f"{where}/{rel}: larger than 256 KB")
         elif rel.startswith("assets/") and rel.count("/") == 1:
-            if p.suffix.lower() not in L.ALLOWED_ASSETS | L.AUDIO_ASSETS:
-                errors.append(f"{where}/{rel}: only png, webp and jpg pictures and ogg, mp3, wav and m4a sounds are allowed")
+            if p.suffix.lower() not in L.ALLOWED_ASSETS | L.AUDIO_ASSETS | L.MODEL_ASSETS:
+                errors.append(f"{where}/{rel}: only png, webp and jpg pictures, ogg, mp3, wav and m4a sounds and glb 3D models are allowed")
+            elif p.suffix.lower() in L.MODEL_ASSETS:
+                if size > L.MAX_MODEL_BYTES:
+                    errors.append(f"{where}/{rel}: larger than 5 MB")
+                errors.extend(f"{where}/{rel}: {e}" for e in L.check_glb(p))
             elif size > L.MAX_ASSET_BYTES:
                 errors.append(f"{where}/{rel}: larger than 2 MB")
             elif p.suffix.lower() in L.AUDIO_ASSETS:
