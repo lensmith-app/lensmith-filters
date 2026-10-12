@@ -34,6 +34,7 @@ MODEL_ASSETS = {".glb"}
 MAX_MODEL_BYTES = 5 * 1024 * 1024
 MAX_MODEL_TRIANGLES = 60_000
 MODELS_APP_VERSION = 16  # 3D models (.glb) on the head
+FACE_PAINT_APP_VERSION = 17  # facePaint on the face mesh
 
 
 def check_glb(path) -> list:

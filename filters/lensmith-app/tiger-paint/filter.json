@@ -1,0 +1,42 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 17,
+  "id": "lensmith-app.tiger-paint",
+  "name": "Tiger Paint",
+  "brightness": 0,
+  "contrast": 1,
+  "saturation": 1.1,
+  "warmth": 0.2,
+  "tint": 0,
+  "fade": 0,
+  "vignette": 0.1,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true,
+  "facePaint": {
+    "image": "assets/tiger.png",
+    "opacity": 0.9,
+    "blend": "Normal"
+  }
+}
