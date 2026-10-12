@@ -1,0 +1,53 @@
+{
+  "formatVersion": 2,
+  "minAppVersion": 16,
+  "id": "lensmith-app.devil-horns-3d",
+  "name": "Devil Horns",
+  "brightness": 0,
+  "contrast": 1.12,
+  "saturation": 1.0,
+  "warmth": 0,
+  "tint": 0.1,
+  "fade": 0,
+  "vignette": 0.35,
+  "grain": 0,
+  "colorize": [
+    1,
+    1,
+    1
+  ],
+  "colorizeAmount": 0,
+  "effect": "None",
+  "effectParam": 0,
+  "stickers": [],
+  "warps": [],
+  "background": "None",
+  "backgroundTop": [
+    1,
+    0.55,
+    0.3
+  ],
+  "backgroundBottom": [
+    0.45,
+    0.15,
+    0.55
+  ],
+  "rules": [],
+  "doubleTapFlip": true,
+  "models": [
+    {
+      "file": "assets/devil-horns.glb",
+      "position": [
+        0.0,
+        14.81,
+        -2.58
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "size": 11.1
+    }
+  ]
+}
