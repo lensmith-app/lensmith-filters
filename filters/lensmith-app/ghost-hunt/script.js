@@ -42,7 +42,7 @@ function update(lens, dt) {
     spawn -= dt;
     if (spawn <= 0) {
       var pumpkin = Math.random() < 0.18;
-      items.push({ x: lens.random(0.15, 0.85), y: lens.random(s.top * 0.3, s.top * 0.82), size: pumpkin ? 0.16 : lens.random(0.13, 0.19),
+      items.push({ x: lens.random(0.15, 0.85), y: lens.random(s.top * 0.3, s.top * 0.82), size: pumpkin ? 0.18 : lens.random(0.16, 0.22),
         life: Math.max(0.9, 1.9 - t * 0.03), age: 0, pumpkin: pumpkin, wob: lens.random(0, 6) });
       spawn = Math.max(0.35, 0.9 - t * 0.02);
     }

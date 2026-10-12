@@ -4,7 +4,7 @@ var bats = [], scattered = [], wasOpen = false, music = false;
 
 function start(lens) {
   for (var i = 0; i < BATS; i++) {
-    bats.push({ a: (i / BATS) * Math.PI * 2, speed: lens.random(0.9, 1.4), r: lens.random(0.85, 1.25), bob: lens.random(0, 6), size: lens.random(0.09, 0.14) });
+    bats.push({ a: (i / BATS) * Math.PI * 2, speed: lens.random(0.9, 1.4), r: lens.random(0.85, 1.25), bob: lens.random(0, 6), size: lens.random(0.13, 0.18) });
   }
 }
 
@@ -21,7 +21,7 @@ function update(lens, dt) {
     lens.sound("assets/screech.ogg", 0.9, lens.random(0.9, 1.15));
     for (var i = 0; i < 14; i++) {
       var a = lens.random(0, Math.PI * 2), v = lens.random(0.5, 0.9);
-      scattered.push({ x: cx, y: cy, vx: Math.cos(a) * v, vy: Math.sin(a) * v + 0.2, t: 0, size: lens.random(0.07, 0.12) });
+      scattered.push({ x: cx, y: cy, vx: Math.cos(a) * v, vy: Math.sin(a) * v + 0.2, t: 0, size: lens.random(0.1, 0.15) });
     }
   }
   wasOpen = open;
