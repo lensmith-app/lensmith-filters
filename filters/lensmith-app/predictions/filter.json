@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 5,
+  "minAppVersion": 15,
   "id": "lensmith-app.predictions",
   "name": "Predictions",
   "brightness": 0,

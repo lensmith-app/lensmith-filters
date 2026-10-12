@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 5,
+  "minAppVersion": 15,
   "id": "lensmith-app.rate-my-vibe",
   "name": "Rate My Vibe",
   "brightness": 0,

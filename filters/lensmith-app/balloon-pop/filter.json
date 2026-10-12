@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 6,
+  "minAppVersion": 15,
   "id": "lensmith-app.balloon-pop",
   "name": "Balloon Pop",
   "brightness": 0,

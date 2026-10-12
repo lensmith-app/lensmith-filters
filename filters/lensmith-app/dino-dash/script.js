@@ -2,7 +2,7 @@
 var dinoY = 0, vy = 0, cacti = [], clouds = [], groundX = 0, dist = 0, speed = 0.55, state = "ready", best = 0, endTime = 0, wasOpen = false, nextCactus = 1;
 
 function jump() {
-  if (dinoY <= 0.0001) vy = 1.35;
+  if (dinoY <= 0.0001) { vy = 1.35; lens.sound("jump", 0.8); }
 }
 
 function start(lens) {
@@ -11,7 +11,7 @@ function start(lens) {
 
 function tap(lens) {
   if (state === "ready" || (state === "over" && lens.time - endTime > 0.8)) {
-    state = "playing"; cacti = []; dist = 0; speed = 0.55; nextCactus = 1; dinoY = 0; vy = 0; return;
+    state = "playing"; cacti = []; dist = 0; speed = 0.55; nextCactus = 1; dinoY = 0; vy = 0; lens.music("arcade", 0.3); return;
   }
   if (state === "playing") jump();
 }
@@ -42,6 +42,7 @@ function update(lens, dt) {
       if (c.x < -0.1) { cacti.splice(i, 1); continue; }
       if (Math.abs(c.x - dx) < 0.06 && dinoY < c.h * 0.85) {
         state = "over"; endTime = lens.time; best = Math.max(best, Math.floor(dist));
+        lens.music(null); lens.sound("boom", 0.8); lens.sound("lose", 0.7);
         lens.burst("💫", dx, ground + 0.1, 6, "Explode", 0.05); lens.flash(1, 0.4, 0.4);
       }
     }

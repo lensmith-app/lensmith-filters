@@ -4,7 +4,7 @@ var bubbles = [], score = 0, t = 0, spawn = 0, state = "ready", best = 0, endTim
 
 function tap(lens) {
   if (state === "playing" || (state === "over" && lens.time - endTime < 0.8)) return;
-  state = "playing"; t = 0; score = 0; bubbles = []; spawn = 0;
+  state = "playing"; t = 0; score = 0; bubbles = []; spawn = 0; lens.music("chill", 0.4);
 }
 
 function update(lens, dt) {
@@ -20,7 +20,7 @@ function update(lens, dt) {
         phase: lens.random(0, 6), gold: gold, pop: 0 });
       spawn = Math.max(0.25, 0.6 - t * 0.01);
     }
-    if (t >= LENGTH) { state = "over"; endTime = lens.time; best = Math.max(best, score); lens.flash(0.7, 0.9, 1); }
+    if (t >= LENGTH) { state = "over"; lens.music(null); lens.sound("win"); endTime = lens.time; best = Math.max(best, score); lens.flash(0.7, 0.9, 1); }
   }
   for (var i = bubbles.length - 1; i >= 0; i--) {
     var b = bubbles[i];
@@ -33,7 +33,7 @@ function update(lens, dt) {
     if (state === "playing") { b.y += b.v * dt; b.phase += dt * 2; }
     var x = b.x + Math.sin(b.phase) * 0.03;
     if (state === "playing" && f && Math.abs(f.anchors.NoseTip.x - x) < b.r + 0.02 && Math.abs(f.anchors.NoseTip.y - b.y) < b.r + 0.02) {
-      score += b.gold ? 5 : 1; b.pop = 0.15; b.x = x;
+      score += b.gold ? 5 : 1; b.pop = 0.15; b.x = x; lens.sound(b.gold ? "sparkle" : "pop", 0.9, lens.random(1, 1.5));
       lens.burst(b.gold ? "⭐" : "💧", x, b.y, b.gold ? 8 : 5, "Explode", 0.03);
       continue;
     }

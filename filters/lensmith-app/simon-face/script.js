@@ -32,7 +32,7 @@ function nextMove(lens) {
 
 function tap(lens) {
   if (state === "playing" || (state === "over" && lens.time - endTime < 0.8)) return;
-  state = "playing"; score = 0; limit = 3; move = null; nextMove(lens);
+  state = "playing"; score = 0; limit = 3; move = null; nextMove(lens); lens.music("beat", 0.3);
 }
 
 function update(lens, dt) {
@@ -42,11 +42,11 @@ function update(lens, dt) {
     timeLeft -= dt;
     if (doing(f, move[0])) hold += dt; else hold = 0;
     if (hold > 0.25) {
-      score++; limit = Math.max(1.2, limit * 0.93);
+      score++; limit = Math.max(1.2, limit * 0.93); lens.sound("ding", 0.8, Math.min(2, 1 + score * 0.04));
       lens.burst("✅", 0.5, s.top * 0.6, 1, "Explode", 0.12);
       nextMove(lens);
     } else if (timeLeft <= 0) {
-      state = "over"; endTime = lens.time; best = Math.max(best, score);
+      state = "over"; endTime = lens.time; best = Math.max(best, score); lens.music(null); lens.sound("lose");
       lens.flash(1, 0.4, 0.4);
     }
   }

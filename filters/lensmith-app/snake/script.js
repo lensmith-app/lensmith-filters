@@ -28,7 +28,7 @@ var tapTurn = 0;
 function tap(lens, tx) {
   if (state !== "playing") {
     if (state === "over" && lens.time - endTime < 0.8) return;
-    reset(lens); state = "playing"; return;
+    reset(lens); state = "playing"; lens.music("arcade", 0.3); return;
   }
   tapTurn = tx < 0.5 ? 1 : -1;
 }
@@ -51,7 +51,7 @@ function update(lens, dt) {
     if (Math.abs(x - last.x) + Math.abs(y - last.y) > 0.008) path.unshift({ x: x, y: y });
     if (path.length > 400) path.length = 400;
     if (Math.abs(x - apple.x) < 0.05 && Math.abs(y - apple.y) < 0.05) {
-      score++; length += 3; lens.burst("✨", apple.x, apple.y, 8, "Explode", 0.04); place(lens);
+      score++; length += 3; lens.sound("chomp", 0.9, lens.random(0.9, 1.2)); lens.burst("✨", apple.x, apple.y, 8, "Explode", 0.04); place(lens);
     }
     var dead = x < 0.03 || x > 0.97 || y < bottom || y > top;
     // Self collision: any body segment (skipping the neck) close to the head.
@@ -59,7 +59,7 @@ function update(lens, dt) {
       var p = path[Math.min(path.length - 1, i * 6)];
       if (i > 3 && Math.abs(p.x - x) < SEG * 0.6 && Math.abs(p.y - y) < SEG * 0.6) dead = true;
     }
-    if (dead) { state = "over"; endTime = lens.time; best = Math.max(best, score); lens.flash(1, 0.4, 0.4); }
+    if (dead) { state = "over"; lens.music(null); lens.sound("lose"); endTime = lens.time; best = Math.max(best, score); lens.flash(1, 0.4, 0.4); }
   }
   // Arena border.
   for (var bx = 0; bx < 11; bx++) {

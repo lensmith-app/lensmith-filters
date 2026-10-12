@@ -5,7 +5,7 @@ var TAUNTS = ["👀", "🫣", "🌬️", "🧅", "💨", "🪰"];
 function tap(lens) {
   if (state === "playing") return;
   if (state === "over" && lens.time - endTime < 0.8) return;
-  state = "playing"; t = 0; distract = 2;
+  state = "playing"; t = 0; distract = 2; lens.sound("powerup");
 }
 
 function update(lens, dt) {
@@ -21,6 +21,7 @@ function update(lens, dt) {
     }
     if (f.eyesClosed) {
       state = "over"; endTime = lens.time; best = Math.max(best, t);
+      lens.sound("lose");
       lens.burst("😵", f.x, f.y, 10, "Explode", 0.08);
       lens.flash(1, 0.4, 0.4);
     }

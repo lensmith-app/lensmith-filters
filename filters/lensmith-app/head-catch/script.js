@@ -25,9 +25,9 @@ function update(lens, dt) {
     if (state === "playing") it.y -= it.v * dt;
     if (state === "playing" && Math.abs(it.x - basketX) < 0.09 && Math.abs(it.y - y) < 0.05) {
       if (it.bomb) {
-        lives--; lens.burst("💥", it.x, it.y, 1, "Explode", 0.18); lens.flash(1, 0.4, 0.2);
-        if (lives <= 0) { state = "over"; endTime = lens.time; best = Math.max(best, score); }
-      } else { score++; lens.burst("✨", it.x, it.y, 5, "Explode", 0.04); }
+        lives--; lens.sound("boom", 0.7); lens.burst("💥", it.x, it.y, 1, "Explode", 0.18); lens.flash(1, 0.4, 0.2);
+        if (lives <= 0) { state = "over"; lens.sound("lose"); endTime = lens.time; best = Math.max(best, score); }
+      } else { score++; lens.sound("chomp", 0.8, lens.random(0.9, 1.2)); lens.burst("✨", it.x, it.y, 5, "Explode", 0.04); }
       items.splice(i, 1);
       continue;
     }

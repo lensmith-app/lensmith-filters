@@ -13,13 +13,13 @@ function start(lens) {
 }
 
 function tap(lens, x, y) {
-  if (state !== "playing") { state = "playing"; t = 0; score = 0; next = 0.5; return; }
+  if (state !== "playing") { state = "playing"; t = 0; score = 0; next = 0.5; lens.music("arcade", 0.3); return; }
   for (var i = 0; i < holes.length; i++) {
     var h = holes[i];
     if (h.up > 0 && !h.hit && Math.abs(x - h.x) < 0.13 && Math.abs(y - (h.y + 0.05)) < 0.13) {
       h.hit = true;
-      if (h.kind === "🐰") { score = Math.max(0, score - 2); lens.flash(1, 0.3, 0.3); lens.popup("Not the bunny!"); }
-      else { score++; lens.burst("💥", h.x, h.y + 0.05, 1, "Explode", 0.12); }
+      if (h.kind === "🐰") { score = Math.max(0, score - 2); lens.sound("buzz"); lens.flash(1, 0.3, 0.3); lens.popup("Not the bunny!"); }
+      else { score++; lens.sound("bounce", 1, lens.random(0.9, 1.3)); lens.burst("💥", h.x, h.y + 0.05, 1, "Explode", 0.12); }
       h.up = Math.min(h.up, 0.25);
       return;
     }
@@ -37,7 +37,7 @@ function update(lens, dt) {
       if (h.up <= 0) { h.up = Math.max(0.6, 1.3 - t * 0.02); h.kind = Math.random() < 0.15 ? "🐰" : "🐹"; h.hit = false; }
       next = Math.max(0.35, 0.9 - t * 0.02);
     }
-    if (t >= LENGTH) { state = "over"; best = Math.max(best, score); lens.flash(1, 0.9, 0.5); }
+    if (t >= LENGTH) { state = "over"; lens.music(null); lens.sound("win"); best = Math.max(best, score); lens.flash(1, 0.9, 0.5); }
   }
   for (var i = 0; i < holes.length; i++) {
     var h = holes[i];

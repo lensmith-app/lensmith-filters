@@ -47,9 +47,10 @@ function tap(lens, x, y) {
   }
   if (best < 0 || bestD > 0.2) return;
   slots[best] = current;
+  lens.sound("pop");
   lens.burst("✨", 0.3, slotY(lens, best), 8, "Explode", 0.04);
   current = queue.shift() || null;
-  if (!current) { doneTime = lens.time; lens.flash(1, 0.95, 0.7); }
+  if (!current) { doneTime = lens.time; lens.flash(1, 0.95, 0.7); lens.sound("sparkle"); }
 }
 
 function update(lens, dt) {

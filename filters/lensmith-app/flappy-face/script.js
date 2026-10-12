@@ -20,7 +20,7 @@ function reset(lens) {
 
 function flap(lens) {
   if (state === "ready") state = "playing";
-  if (state === "playing") bird.vy = FLAP;
+  if (state === "playing") { bird.vy = FLAP; lens.sound("swish", 0.6, lens.random(1, 1.3)); }
   else if (state === "over" && lens.time - endTime > 1) reset(lens);
 }
 
@@ -47,7 +47,7 @@ function update(lens, dt) {
     for (var i = pipes.length - 1; i >= 0; i--) {
       var p = pipes[i];
       p.x -= SPEED * dt;
-      if (!p.scored && p.x < bird.x) { p.scored = true; score++; lens.burst("⭐", bird.x, bird.y, 5, "Explode", 0.04); }
+      if (!p.scored && p.x < bird.x) { p.scored = true; score++; lens.sound("coin", 0.8); lens.burst("⭐", bird.x, bird.y, 5, "Explode", 0.04); }
       if (p.x < -0.2) pipes.splice(i, 1);
       else if (Math.abs(p.x - bird.x) < BLOCK * 0.5 + 0.035 && Math.abs(bird.y - p.gap) > GAP / 2 - 0.035) crash(lens);
     }
@@ -74,6 +74,8 @@ function crash(lens) {
   if (state !== "playing") return;
   state = "over";
   endTime = lens.time;
+  lens.sound("boom", 0.8);
+  lens.sound("lose", 0.6);
   lens.burst("💥", bird.x, bird.y, 1, "Explode", 0.15);
   lens.flash(1, 0.3, 0.2);
 }

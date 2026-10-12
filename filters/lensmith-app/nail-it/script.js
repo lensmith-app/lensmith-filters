@@ -71,6 +71,7 @@ function tap(lens, x, y) {
       vy: Math.sin(rad) * BULLET_SPEED
     };
     state = "flying";
+    lens.sound("laser", 0.7);
   } else if (state === "won" || state === "lost") {
     if (lens.time - endTime > 0.8) newRound(lens);
   }
@@ -101,8 +102,8 @@ function moveBullet(lens, dt) {
   b.y += b.vy * dt;
 
   // Walls.
-  if (b.x < s.left + WALL + BULLET_SIZE) { b.x = s.left + WALL + BULLET_SIZE; b.vx = Math.abs(b.vx); }
-  if (b.x > s.right - WALL - BULLET_SIZE) { b.x = s.right - WALL - BULLET_SIZE; b.vx = -Math.abs(b.vx); }
+  if (b.x < s.left + WALL + BULLET_SIZE) { b.x = s.left + WALL + BULLET_SIZE; b.vx = Math.abs(b.vx); lens.sound("bounce", 0.4); }
+  if (b.x > s.right - WALL - BULLET_SIZE) { b.x = s.right - WALL - BULLET_SIZE; b.vx = -Math.abs(b.vx); lens.sound("bounce", 0.4); }
 
   // Nails: hammer it in and ricochet away from its wall.
   for (var i = 0; i < nails.length; i++) {
@@ -112,6 +113,7 @@ function moveBullet(lens, dt) {
     if (b.x >= span.from - BULLET_SIZE && b.x <= span.to + BULLET_SIZE && Math.abs(b.y - n.y) < BULLET_SIZE + 0.012) {
       n.hit = true;
       score++;
+      lens.sound("ding", 0.8, Math.min(2, 0.9 + score * 0.05));
       b.vx = n.left ? Math.abs(b.vx) : -Math.abs(b.vx);
       lens.burst("💥", n.left ? span.to : span.from, n.y, 1, "Explode", 0.16);
       lens.burst("✨", n.left ? span.to : span.from, n.y, 6, "Explode", 0.04);
@@ -121,6 +123,7 @@ function moveBullet(lens, dt) {
   // Past the last nail (or out of the screen): the round is over.
   if (b.y > s.top + 0.05 || b.y < s.bottom - 0.05) {
     state = score === nails.length ? "won" : "lost";
+    lens.sound(state === "won" ? "win" : "lose");
     endTime = lens.time;
     bullet = null;
     if (state === "won") lens.flash(1, 0.9, 0.4);

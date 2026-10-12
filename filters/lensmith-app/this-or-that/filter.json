@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "minAppVersion": 6,
+  "minAppVersion": 15,
   "id": "lensmith-app.this-or-that",
   "name": "This or That",
   "brightness": 0,

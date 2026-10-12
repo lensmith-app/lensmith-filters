@@ -21,7 +21,7 @@ function serve(lens) {
 
 function tap(lens) {
   if (state === "ready" || (state === "over" && lens.time - endTime > 0.8)) {
-    lives = 3; score = 0; level = 1; build(lens); serve(lens); state = "playing"; return;
+    lives = 3; score = 0; level = 1; build(lens); serve(lens); state = "playing"; lens.music("arcade", 0.3); return;
   }
   if (state === "won") { level++; build(lens); serve(lens); state = "playing"; return; }
   if (ball && ball.stuck) ball.stuck = false;
@@ -54,7 +54,7 @@ function update(lens, dt) {
           var b = bricks[i];
           if (!b.alive) continue;
           if (Math.abs(ball.x - b.x) < BW / 2 + R && Math.abs(ball.y - b.y) < BH / 2 + R) {
-            b.alive = false; score += 10;
+            b.alive = false; score += 10; lens.sound("pop", 0.8, lens.random(0.9, 1.4));
             lens.burst(BRICKS[b.color], b.x, b.y, 3, "Explode", 0.04);
             if (Math.abs(ball.x - b.x) / BW > Math.abs(ball.y - b.y) / BH) ball.vx = -ball.vx; else ball.vy = -ball.vy;
             ball.vx *= 1.01; ball.vy *= 1.01;
@@ -64,12 +64,13 @@ function update(lens, dt) {
       }
       if (ball.y < s.top * 0.2) {
         lives--;
+        lens.sound("buzz");
         lens.flash(1, 0.4, 0.4);
-        if (lives <= 0) { state = "over"; endTime = lens.time; } else serve(lens);
+        if (lives <= 0) { state = "over"; endTime = lens.time; lens.music(null); lens.sound("lose"); } else serve(lens);
       }
       var left = 0;
       for (var k = 0; k < bricks.length; k++) if (bricks[k].alive) left++;
-      if (left === 0) { state = "won"; lens.flash(1, 0.9, 0.5); lens.burst("⭐", 0.5, s.top * 0.6, 16, "Explode", 0.06); }
+      if (left === 0) { state = "won"; lens.sound("win"); lens.flash(1, 0.9, 0.5); lens.burst("⭐", 0.5, s.top * 0.6, 16, "Explode", 0.06); }
     }
   }
   if (bricks.length === 0) build(lens);

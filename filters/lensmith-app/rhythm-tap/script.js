@@ -26,17 +26,18 @@ function judge(lens, lane) {
     if (err < bestErr) { bestErr = err; best = n; }
   }
   ringFlash[lane] = 0.15;
-  if (!best || bestErr > 0.22) { combo = 0; feedback = "Miss"; feedbackTime = lens.time; return; }
+  if (!best || bestErr > 0.22) { lens.sound("click", 0.5); combo = 0; feedback = "Miss"; feedbackTime = lens.time; return; }
   best.done = true; hits++;
   combo++; maxCombo = Math.max(maxCombo, combo);
   var perfect = bestErr < 0.08;
+  lens.sound(perfect ? "hihat" : "snare", perfect ? 1 : 0.8);
   score += (perfect ? 100 : 50) * (1 + Math.floor(combo / 10));
   feedback = perfect ? "Perfect!" : "Good"; feedbackTime = lens.time;
   lens.burst(perfect ? "✨" : "💫", LANES[lane], lens.screen.top * 0.32, perfect ? 8 : 4, "Explode", 0.04);
 }
 
 function tap(lens, x) {
-  if (state !== "playing") { build(lens); t = 0; score = 0; combo = 0; maxCombo = 0; hits = 0; state = "playing"; return; }
+  if (state !== "playing") { build(lens); t = 0; score = 0; combo = 0; maxCombo = 0; hits = 0; state = "playing"; lens.music("beat", 0.45); return; }
   judge(lens, x < 0.36 ? 0 : x < 0.64 ? 1 : 2);
 }
 
@@ -51,7 +52,7 @@ function update(lens, dt) {
       var n = notes[i];
       if (!n.done && t - n.time > 0.22) { n.done = true; combo = 0; feedback = "Miss"; feedbackTime = lens.time; }
     }
-    if (t > notes[notes.length - 1].time + 1) { state = "over"; best = Math.max(best, score); lens.flash(1, 0.9, 0.6); }
+    if (t > notes[notes.length - 1].time + 1) { state = "over"; lens.music(null); lens.sound("win"); best = Math.max(best, score); lens.flash(1, 0.9, 0.6); }
   }
   for (var l = 0; l < 3; l++) {
     ringFlash[l] = Math.max(0, ringFlash[l] - dt);

@@ -36,11 +36,13 @@ function update(lens, dt) {
       shown = (shown + 1 + Math.floor(lens.random(0, OPTIONS.length - 1))) % OPTIONS.length;
       // Flips slow down as the spin goes on.
       nextFlip = 0.06 + spinTime * spinTime * 0.05;
+      lens.sound("tick", 0.7);
     }
     if (spinTime > 3) {
       shown = pick;
       state = "done";
       lens.flash(1, 1, 1);
+      lens.sound("sparkle");
     }
   } else if (state === "done") {
     spinTime += dt;
