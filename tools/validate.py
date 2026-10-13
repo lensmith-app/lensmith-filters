@@ -22,7 +22,7 @@ MAINTAINER_ROLES = {"MAINTAINER", "OWNER", "MEMBER", "COLLABORATOR"}
 
 def changed_filter_dirs(base: str) -> set[tuple[str, str]]:
     out = subprocess.run(
-        ["git", "diff", "--name-only", f"{base}...HEAD"], capture_output=True, text=True, check=True
+        ["git", "diff", "--name-only", f"{base}...HEAD"], capture_output=True, text=True, encoding="utf-8", check=True
     ).stdout
     dirs = set()
     for line in out.splitlines():
@@ -39,7 +39,7 @@ def changed_filter_dirs(base: str) -> set[tuple[str, str]]:
 
 def version_on_base(base: str, f: L.Filter) -> int | None:
     result = subprocess.run(
-        ["git", "show", f"{base}:{(f.path / 'listing.json').as_posix()}"], capture_output=True, text=True
+        ["git", "show", f"{base}:{(f.path / 'listing.json').as_posix()}"], capture_output=True, text=True, encoding="utf-8"
     )
     if result.returncode != 0:
         return None  # new filter

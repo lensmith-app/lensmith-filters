@@ -34,7 +34,7 @@ TRENDING_DAYS = 7
 
 
 def run(*cmd: str, check: bool = True) -> str:
-    return subprocess.run(cmd, capture_output=True, text=True, check=check).stdout
+    return subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", check=check).stdout
 
 
 def load_filters() -> list[L.Filter]:
